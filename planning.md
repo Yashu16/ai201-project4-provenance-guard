@@ -58,9 +58,10 @@ Request Payload (JSON):
   "submission_id": "unique-uuid-string",
   "reason": "I wrote this myself on a typewriter last Tuesday."
 }
+```
 Response (JSON - 200 OK):
 
-JSON
+```JSON
 {
   "status": "success",
   "message": "Appeal successfully logged. Content status updated to under review.",
@@ -68,6 +69,7 @@ JSON
 }
 ```
 
+```markdown
 ## System Architecture Diagram
 
 ### Flow 1: Content Submission Pipeline
