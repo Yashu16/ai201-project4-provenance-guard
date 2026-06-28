@@ -42,14 +42,16 @@ Once we have two different scores from two signals, we will use *weighted averag
 ### Structure
 **Uncertainty representation**
 To make sure False positives are handled carefully, we will divide our threshold into 3 parts. When the two signals output two different scores, we take a weighted average of them, which gives us one score that sits in between 0-1. 
-So, anywhere from [0-0.35] is *High-confidence Human*. [0.36-0.74] is *Uncertain*. [0.75-1.00] is *High-Confidence AI*.
+So, anywhere from [0-0.35] is *High-confidence Human*. [0.36-0.64] is *Uncertain*. [0.65-1.00] is *High-Confidence AI*.
+
+*Note: Upper threshold revised from 0.75 to 0.65 after calibration testing — Signal 2 stylometric scores are lower in absolute range than originally anticipated, so the AI boundary was lowered to correctly classify clearly AI-written text.*
 
 **Transparency label design**
 *High-confidence Human[0-0.35]:* 
 "Verified Human Creator: Our automated system has analyzed the content's structure, semantics and stylistics pattern and are highly confident that this was written entirely by a human. 
-*Uncertain[0.36-0.74]:*
+*Uncertain[0.36-0.64]:*
 "Uncertain attribution: Our automated system has analyzed given text but is unable to confidently say that this is human-written due to mixed signals. We are improving our systems in this regard, thank you for your patience!
-*High-Confidence AI[0.75-1.00]:*
+*High-Confidence AI[0.65-1.00]:*
 "AI-generated Content: This uploaded text was analyzed by our system and we have detected AI written structure and semantics. If you are the creator and believe this classification is a mistake, you can submit your appeal and it will be reviewed by our moderators."
 
 **Appeal workflow**
