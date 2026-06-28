@@ -74,7 +74,8 @@ So, anywhere from [0-0.35] is *High-confidence Human*. [0.36-0.74] is *Uncertain
 * **Request Payload (JSON):**
   ```json
   {
-    "content": "The raw text string of the poem, story, or article goes here..."
+    "text": "The raw text string of the poem, story, or article goes here...",
+    "creator_id" : "test-user-1"
   }
 
 * Response (JSON - 200 OK):
@@ -82,7 +83,7 @@ So, anywhere from [0-0.35] is *High-confidence Human*. [0.36-0.74] is *Uncertain
  ```JSON
     {
     "submission_id": "unique-uuid-string",
-    "ai_likelihood_score": 0.15,
+    "confidence": 0.15,
     "verdict": "high_confidence_human",
     "transparency_label": "Verified Human Work: Our system is highly confident this content was authored by a human creator."
     }
@@ -96,6 +97,7 @@ Request Payload (JSON):
 ```JSON
 {
   "submission_id": "unique-uuid-string",
+  "creator_id" : "test-user-1",
   "reason": "I wrote this myself on a typewriter last Tuesday."
 }
 ```

@@ -1,0 +1,29 @@
+[
+  {
+    "submission_id": "b1693f0b-bf8c-41e9-9db7-e8cca5d0888e",
+    "creator_id": "test-user-1",
+    "timestamp": "2026-06-28T20:31:44.143Z",
+    "attribution": "high_confidence_human",
+    "confidence": 0.21,
+    "llm_score": 0.21,
+    "status": "classified"
+  },
+  {
+    "submission_id": "d58754b5-b648-438d-9ebf-5c7e7214a8f0",
+    "creator_id": "test-user-1",
+    "timestamp": "2026-06-28T20:35:20.083Z",
+    "attribution": "high_confidence_ai",
+    "confidence": 0.85,
+    "llm_score": 0.85,
+    "status": "classified"
+  },
+  {
+    "submission_id": "041f5985-5c03-4f5b-9253-b2e8562ee976",
+    "creator_id": "test-user-1",
+    "timestamp": "2026-06-28T20:35:20.333Z",
+    "attribution": "high_confidence_human",
+    "confidence": 0.12,
+    "llm_score": 0.12,
+    "status": "classified"
+  }
+]
