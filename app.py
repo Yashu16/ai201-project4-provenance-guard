@@ -14,7 +14,8 @@ app = Flask(__name__)
 limiter = Limiter(
     get_remote_address,
     app=app,
-    default_limits=[]
+    default_limits=[],
+    storage_uri="memory://"
 )
 
 AUDIT_LOG = Path(__file__).parent / "audit_log.json"
@@ -38,8 +39,19 @@ def get_log() -> list:
         return json.load(f)
 
 
+def update_audit_entry(submission_id: str, updates: dict) -> bool:
+    log = get_log()
+    for entry in log:
+        if entry.get("submission_id") == submission_id:
+            entry.update(updates)
+            with open(AUDIT_LOG, "w") as f:
+                json.dump(log, f, indent=2)
+            return True
+    return False
+
+
 @app.route("/api/submit", methods=["POST"])
-@limiter.limit("5 per minute")
+@limiter.limit("5 per minute;50 per day")
 def submit():
     data = request.get_json(silent=True)
     if not data or "creator_id" not in data or "text" not in data:
@@ -75,6 +87,37 @@ def submit():
         "attribution": verdict,
         "confidence": confidence,
         "label": label
+    }), 200
+
+
+@app.route("/api/appeal", methods=["POST"])
+@limiter.limit("3 per minute")
+def appeal():
+    data = request.get_json(silent=True)
+    if not data or "submission_id" not in data or "creator_id" not in data or "creator_reasoning" not in data:
+        return jsonify({"error": "Request must include submission_id, creator_id, and creator_reasoning"}), 400
+
+    if not data["creator_reasoning"].strip():
+        return jsonify({"error": "creator_reasoning cannot be empty"}), 400
+
+    timestamp = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%S.%f")[:-3] + "Z"
+
+    updated = update_audit_entry(data["submission_id"], {
+        "status": "under_review",
+        "appeal": {
+            "creator_id": data["creator_id"],
+            "creator_reasoning": data["creator_reasoning"],
+            "appeal_timestamp": timestamp
+        }
+    })
+
+    if not updated:
+        return jsonify({"error": f"submission_id not found: {data['submission_id']}"}), 404
+
+    return jsonify({
+        "status": "success",
+        "message": "Appeal successfully logged. Content status updated to under review.",
+        "submission_id": data["submission_id"]
     }), 200
 
 
