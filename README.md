@@ -236,7 +236,7 @@ Sample 3 (the monetary policy paragraph) scored 0.544 — uncertain — despite 
 **Instance 2:** I have asked AI to brainstorm different methods to combine both signals, and out of differnt options it suggested - like, choosing by vote of each signal, giving maximum importance to stylometric signal, I have chosen to do weighted average and give 40% to groq and 60% to stylometric signal. 
 
 appeal command
-Invoke-RestMethod -Uri http://localhost:5000/api/appeal -Method POST -ContentType "application/json" -Body '{"submission_id": "2067a907-343e-4bdf-8108-460dd642136e", "creator_id": "test-user-1", "creator_reasoning": "I wrote this myself, the system incorrectly flagged my work."}' | Format-List
+Invoke-RestMethod -Uri http://localhost:5000/api/appeal -Method POST -ContentType "application/json" -Body '{"submission_id": "PASTE-ID-HERE", "creator_id": "test-user-1", "creator_reasoning": "I wrote this myself, the system incorrectly flagged my work."}' | Format-List
 
 rate limit command
 1..7 | ForEach-Object {
