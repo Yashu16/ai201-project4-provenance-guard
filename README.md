@@ -1,5 +1,7 @@
 # ai201-project4-provenance-guard
 
+[Portfolio Video Demo](https://drive.google.com/file/d/1hTKpRAD3acvFxbeKzgVtABIrFSwWqw9R/view?usp=sharing)
+
 ```markdown
 ## System Architecture Diagram
 
