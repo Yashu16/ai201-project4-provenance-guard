@@ -1,10 +1,9 @@
 import requests
 
 TEXT = """
-Artificial intelligence represents a transformative paradigm shift in modern society. 
-It is important to note that while the benefits of AI are numerous, it is equally 
-essential to consider the ethical implications. Furthermore, stakeholders across 
-various sectors must collaborate to ensure responsible deployment.
+I've been thinking a lot about remote work lately. There are genuine tradeoffs — 
+flexibility and no commute on one side, isolation and blurred work-life boundaries 
+on the other. Studies show productivity varies widely by individual and role type.
 """
 
 response = requests.post(
